@@ -268,6 +268,14 @@ function git_prompt_config() {
     fi
   fi
 
+  if [[ "$GIT_PROMPT_START_PREFIX" ]] ; then
+    PROMPT_START="$GIT_PROMPT_START_PREFIX$PROMPT_START"
+  fi
+
+  if [[ "$GIT_PROMPT_END_SUFFIX" ]] ; then
+    PROMPT_END="$PROMPT_END$GIT_PROMPT_END_SUFFIX"
+  fi
+
   # set GIT_PROMPT_LEADING_SPACE to 0 if you want to have no leading space in front of the GIT prompt
   if [[ "$GIT_PROMPT_LEADING_SPACE" = 0 ]]; then
     PROMPT_LEADING_SPACE=""
@@ -538,6 +546,7 @@ function updatePrompt() {
         ;;
     esac
     local STATUS=""
+    local STATUS_SUFFIX=" ${BoldBlue}($(date +'%b %d %T'))${ResetColor}"
 
     # __add_status KIND VALEXPR INSERT
     # eg: __add_status  'STAGED' '-ne 0'
@@ -579,7 +588,7 @@ function updatePrompt() {
     fi
     __add_status        "$ResetColor$GIT_PROMPT_SUFFIX"
 
-    NEW_PROMPT="$(gp_add_virtualenv_to_prompt)$PROMPT_START$($prompt_callback)$STATUS_PREFIX$STATUS$PROMPT_END"
+    NEW_PROMPT="$(gp_add_virtualenv_to_prompt)$PROMPT_START$($prompt_callback)$STATUS_PREFIX$STATUS$STATUS_SUFFIX$PROMPT_END"
   else
     NEW_PROMPT="$EMPTY_PROMPT"
   fi
