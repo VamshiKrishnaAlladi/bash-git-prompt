@@ -2,39 +2,51 @@
 # it is clone of oh-my-zsh crunch theme style with exit status
 
 override_git_prompt_colors() {
-    if [ -e ~/.rvm/bin/rvm-prompt ]; then
-        RUBY_PROMPT='{$(~/.rvm/bin/rvm-prompt i v)}'
-    else
-        if command -v rbenv > /dev/null; then
-            RUBY_PROMPT='{$(rbenv version | sed -e "s/ (set.*$//")}'
-        fi
-    fi
+    GIT_PROMPT_THEME_NAME="VKA"
 
     Time12a="\$(date)"
 
-    GIT_PROMPT_THEME_NAME="VKA"
+    GIT_PROMPT_SHOW_UPSTREAM=true
+    # GIT_PROMPT_VIRTUALENV="(${Blue}_VIRTUALENV_${ResetColor}) "
 
     GIT_PROMPT_START_PREFIX="\n"
     # GIT_PROMPT_END_SUFFIX='☄️  🐉  '
 
-    GIT_PROMPT_BRANCH="${BoldGreen}  "
-    GIT_PROMPT_MASTER_BRANCH="${GIT_PROMPT_BRANCH}"
-    GIT_PROMPT_REMOTE="${BoldCyan} "
-    GIT_PROMPT_SYMBOLS_NO_REMOTE_TRACKING="${ResetColor} {🌌 }"
-    GIT_PROMPT_SHOW_UPSTREAM=true
+    GIT_PROMPT_PREFIX="[ "
+    GIT_PROMPT_SUFFIX=" ]"
+    GIT_PROMPT_SEPARATOR="  ⁞⁞  "
 
-    GIT_PROMPT_SEPARATOR=" :: "
-    GIT_PROMPT_CHANGED="${Yellow}  ✏️  ⟹  "
+    GIT_PROMPT_BRANCH="${BoldGreen} "
+    GIT_PROMPT_MASTER_BRANCH="${GIT_PROMPT_BRANCH}"
+    GIT_PROMPT_UPSTREAM=" {${BoldBlue} ⭜ _UPSTREAM_ ${ResetColor}}"
+    GIT_PROMPT_REMOTE="${BoldCyan} "
+
+    GIT_PROMPT_SYMBOLS_AHEAD="↥·"
+    GIT_PROMPT_SYMBOLS_BEHIND="⤓·"
+    GIT_PROMPT_SYMBOLS_PREHASH="#"
+    GIT_PROMPT_SYMBOLS_NO_REMOTE_TRACKING="${ResetColor} {🌌 }"
+
+    GIT_PROMPT_CHANGED="${Yellow} ✏️  ⟹  "
     GIT_PROMPT_STAGED="${BoldYellow}  ⏳  ⟹  "
     GIT_PROMPT_UNTRACKED="${BoldGreen}  ❗👣  ⟹  "
     GIT_PROMPT_CONFLICTS="${BoldRed}  ❗❓  ⟹  "
-    GIT_PROMPT_STASHED="${Magenta}  # ⟹  "
+    GIT_PROMPT_STASHED="${Magenta}  ⍯ ⟹  "
     GIT_PROMPT_CLEAN="${Green} ✔ "
+
     GIT_PROMPT_COMMAND_OK="${Green}✔ "
     GIT_PROMPT_COMMAND_FAIL="${Red}✘ "
 
+    GIT_PROMPT_START_USER="_LAST_COMMAND_INDICATOR_ ${Yellow}${PathShort}${ResetColor}"
+    GIT_PROMPT_START_ROOT="_LAST_COMMAND_INDICATOR_ ${GIT_PROMPT_START_USER}"
     GIT_PROMPT_END_USER=" \n🐉   "
     GIT_PROMPT_END_ROOT=" \n[💻]   "
+
+    ## Unicode-Chars/Symbols/Emojis for future use maybe
+    ## Use http://www.unicode.org/charts/ for any reference
+
+    # Arrows: ↟ ↡ ⥣ ⥥ ↥ ⤓ ⬆ ⬇ ⯭ ⯯ ⭡ ⭣ ⭜ ⭝ ⭿ ⮃ ⮂ ↺ ↻ « » ⤊ ⟰ ⇡ ⥑ ⥏ ⇮ ⇯ ⇱ ⤶ ↵ ⇗ ⤣ ↰ ⇫ ⇪ ↯ ⮭ ⮔
+    # Symbols: ⮿ ⁙­­­­ ⁜ — ‴ ⁞ ⌗ ⌦ ⌆ ⌇ ⍼ ⏚ ⌸ ⍯ ⌽ ⌾ ⌯ ⏧ ⌧
+    # Emojis: 🔺🔻🔗
 }
 
 reload_git_prompt_colors "VKA"
